@@ -6,7 +6,7 @@ interface UserCardProps {
   user: UserProps;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<UserCardProps> = ({ user }: UserCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
