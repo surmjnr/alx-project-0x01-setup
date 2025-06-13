@@ -2,13 +2,33 @@ import React from 'react';
 import { UserProps } from '../../interfaces';
 import styles from './UserCard.module.css';
 
+// Define the props interface with strict typing
 interface UserCardProps {
   user: UserProps;
+  onUserClick?: (user: UserProps) => void;
+  className?: string;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ user }: UserCardProps) => {
+// Use React.FC with explicit return type
+const UserCard: React.FC<UserCardProps> = ({ 
+  user, 
+  onUserClick,
+  className 
+}: UserCardProps): JSX.Element => {
+  // Handle click event with proper typing
+  const handleClick = (): void => {
+    if (onUserClick) {
+      onUserClick(user);
+    }
+  };
+
   return (
-    <div className={styles.card}>
+    <div 
+      className={`${styles.card} ${className || ''}`}
+      onClick={handleClick}
+      role="article"
+      aria-label={`User card for ${user.name}`}
+    >
       <div className={styles.header}>
         <h2 className={styles.name}>{user.name}</h2>
         <span className={styles.username}>@{user.username}</span>
@@ -44,5 +64,8 @@ const UserCard: React.FC<UserCardProps> = ({ user }: UserCardProps) => {
     </div>
   );
 };
+
+// Add display name for better debugging
+UserCard.displayName = 'UserCard';
 
 export default UserCard; 

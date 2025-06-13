@@ -17,4 +17,13 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 1rem;
+}
+
+.userCard {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.userCard:hover {
+  transform: translateY(-4px);
 } 
